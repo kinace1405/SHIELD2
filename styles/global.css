@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Brand Colors */
+  --primary-purple: #7C3AED;
+  --primary-green: #16A34A;
+  --primary-silver: #C0C0C0;
+
+  /* Status Colors */
+  --status-active: #16A34A;
+  --status-pending: #FBBF24;
+  --status-inactive: #DC2626;
+  --status-warning: #F59E0B;
+  --status-error: #DC2626;
+  --status-success: #16A34A;
+
+  /* UI Theme Colors */
+  --theme-background: #111827;
+  --theme-foreground: #FFFFFF;
+  --theme-muted: #6B7280;
+  --theme-border: #374151;
+
+  /* Shield Component Colors */
+  --shield-primary: #7C3AED;
+  --shield-secondary: #16A34A;
+  --shield-accent: #60A5FA;
+  --shield-glow: #7C3AED;
+
+  /* Chart Colors */
+  --chart-primary: #7C3AED;
+  --chart-secondary: #16A34A;
+  --chart-tertiary: #60A5FA;
+  --chart-quaternary: #F59E0B;
+
+  /* Subscription Tier Colors */
+  --tier-miles: #6B7280;
+  --tier-centurion: #60A5FA;
+  --tier-tribune: #7C3AED;
+  --tier-consul: #16A34A;
+  --tier-emperor: #F59E0B;
+
+  /* Gradient Colors */
+  --gradient-start: #7C3AED;
+  --gradient-middle: #60A5FA;
+  --gradient-end: #16A34A;
+
+  /* Background Colors */
+  --bg-primary: #111827;
+  --bg-secondary: #1F2937;
+  --bg-tertiary: #374151;
+  --bg-card: #1F2937;
+
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E5E7EB;
+  --text-muted: #9CA3AF;
+  --text-disabled: #6B7280;
+
+  /* Border Colors */
+  --border-primary: #374151;
+  --border-secondary: #4B5563;
+  --border-focus: #7C3AED;
+}
+
+/* Base Styles */
+html,
+body {
+  @apply antialiased bg-background-primary text-text-primary;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-background-tertiary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-border-secondary;
+}
+
+/* Component Classes */
+.card {
+  @apply bg-background-card border border-border-primary rounded-lg p-6 transition-all;
+}
+
+.card-hover {
+  @apply hover:border-border-secondary hover:shadow-glow-sm;
+}
+
+.btn-primary {
+  @apply bg-custom-purple text-white rounded-lg px-4 py-2 
+         hover:bg-opacity-80 transition-colors 
+         disabled:opacity-50 disabled:cursor-not-allowed
+         focus:outline-none focus:ring-2 focus:ring-custom-purple focus:ring-offset-2
+         focus:ring-offset-background-primary;
+}
+
+.btn-secondary {
+  @apply bg-background-tertiary text-white rounded-lg px-4 py-2 
+         hover:bg-opacity-80 transition-colors 
+         disabled:opacity-50 disabled:cursor-not-allowed
+         focus:outline-none focus:ring-2 focus:ring-border-focus focus:ring-offset-2
+         focus:ring-offset-background-primary;
+}
+
+.input {
+  @apply bg-background-tertiary text-white rounded-lg px-4 py-2 
+         focus:outline-none focus:ring-2 focus:ring-custom-purple
+         border border-border-primary;
+}
+
+.badge {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-purple {
+  @apply bg-custom-purple text-white;
+}
+
+.badge-green {
+  @apply bg-custom-green text-white;
+}
+
+.badge-gray {
+  @apply bg-background-tertiary text-white;
+}
+
+/* Typography */
+.heading-1 {
+  @apply text-4xl font-bold text-text-primary;
+}
+
+.heading-2 {
+  @apply text-3xl font-bold text-text-primary;
+}
+
+.heading-3 {
+  @apply text-2xl font-bold text-text-primary;
+}
+
+.subtitle {
+  @apply text-text-muted;
+}
+
+/* Shield-specific styles */
+.shield-glow {
+  @apply shadow-shield;
+}
+
+/* Status Indicators */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+
+.status-active {
+  @apply bg-status-active;
+}
+
+.status-pending {
+  @apply bg-status-pending;
+}
+
+.status-inactive {
+  @apply bg-status-inactive;
+}
+
+/* Form Elements */
+.form-label {
+  @apply block text-sm font-medium text-text-secondary mb-1;
+}
+
+.form-error {
+  @apply text-semantic-error text-sm mt-1;
+}
+
+/* Overlay and Modal */
+.overlay {
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50;
+}
+
+/* Loading States */
+.loading-pulse {
+  @apply animate-pulse bg-background-tertiary rounded;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .heading-1 {
+    @apply text-3xl;
+  }
+
+  .heading-2 {
+    @apply text-2xl;
+  }
+
+  .heading-3 {
+    @apply text-xl;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+}
+
+/* Focus Styles for Accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-custom-purple focus:ring-offset-2 focus:ring-offset-background-primary;
+}
+
+/* Z-index Layers */
+.z-modal {
+  @apply z-50;
+}
+
+.z-dropdown {
+  @apply z-40;
+}
+
+.z-header {
+  @apply z-30;
+}
+
+/* Document States */
+.document-processing {
+  @apply animate-pulse;
+}
+
+.document-error {
+  @apply border-semantic-error;
+}
+
+.document-success {
+  @apply border-semantic-success;
+}
