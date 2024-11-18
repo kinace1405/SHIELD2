@@ -132,4 +132,50 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="mt-6
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {/* Implement Google OAuth */}}
+                  className="w-full"
+                >
+                  <img 
+                    src="/images/google.svg" 
+                    alt="Google" 
+                    className="w-5 h-5 mr-2"
+                  />
+                  Google
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {/* Implement Microsoft OAuth */}}
+                  className="w-full"
+                >
+                  <img 
+                    src="/images/microsoft.svg" 
+                    alt="Microsoft" 
+                    className="w-5 h-5 mr-2"
+                  />
+                  Microsoft
+                </Button>
+              </div>
+            </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-text-muted">
+                Don't have an account?{' '}
+                <Link
+                  href="/auth/register"
+                  className="text-custom-purple hover:text-custom-purple/80 font-medium"
+                >
+                  Create Account
+                </Link>
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
