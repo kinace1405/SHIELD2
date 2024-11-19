@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createMiddlewareSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 export function withAuth(handler: (req: NextRequest, res: NextResponse) => void) {
   return async (req: NextRequest, res: NextResponse) => {
