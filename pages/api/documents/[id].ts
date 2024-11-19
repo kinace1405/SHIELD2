@@ -1,4 +1,3 @@
-// pages/api/documents/[id].ts
 import { withAuth } from '@/middleware/withAuth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { supabase } from '@/lib/supabase';
