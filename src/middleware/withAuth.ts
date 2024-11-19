@@ -1,10 +1,12 @@
+// src/middleware/withAuth.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { createMiddlewareSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { NextApiHandler } from 'next';
+import { cookies } from 'next/headers';
 
 export function withAuth(handler: NextApiHandler) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    const supabase = createMiddlewareSupabaseClient({ req, res });
+    const supabase = createRouteHandlerClient({ cookies });
     
     try {
       const {
@@ -35,4 +37,12 @@ export function withAuth(handler: NextApiHandler) {
       });
     }
   };
+}
+
+// Add type augmentation for the request object
+declare module 'next' {
+  interface NextApiRequest {
+    user?: any;
+    supabase?: any;
+  }
 }
