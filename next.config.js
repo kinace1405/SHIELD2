@@ -3,53 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      'localhost',
-      process.env.NEXT_PUBLIC_SUPABASE_URL?.replace('https://', ''),
+      'avatars.githubusercontent.com',
+      'lh3.googleusercontent.com',
+      'vercel.com'
     ],
   },
-  async headers() {
-    return [
-      {
-        // Apply these headers to all routes
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
-          }
-        ]
-      }
-    ];
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
-  async redirects() {
-    return [
-      {
-        source: '/home',
-        destination: '/',
-        permanent: true,
-      }
-    ];
-  },
-  webpack: (config, { dev, isServer }) => {
-    // Custom webpack config if needed
-    return config;
-  },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
