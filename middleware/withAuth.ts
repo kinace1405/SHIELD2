@@ -2,7 +2,7 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { createMiddlewareSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
 export function withAuth(handler: NextApiHandler) {
-  return async (req: NextApiRequest, res: NextApiResponse) => {
+  return async (req: NextRequest, res: NextResponse) => {
     const supabase = createMiddlewareSupabaseClient({ req, res });
     
     const {
