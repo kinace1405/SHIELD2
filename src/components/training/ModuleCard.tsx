@@ -13,6 +13,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { TrainingModule } from '@/types/training.types';
+import Image from 'next/image';
 
 interface ModuleCardProps {
   module: TrainingModule;
@@ -53,10 +54,13 @@ const ModuleCard = ({
       <div className="relative">
         <div className="aspect-video bg-gray-700 rounded-t-lg overflow-hidden">
           {module.thumbnail && (
-            <img
+            <Image
               src={module.thumbnail}
               alt={module.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
+              priority={false}
             />
           )}
           {isLocked ? (
