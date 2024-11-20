@@ -1,4 +1,3 @@
-```typescript
 import { Department } from '@/types/team/department.types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
