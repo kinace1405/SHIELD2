@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { z } from 'zod';
+import { z, ZodError, ZodSchema } from 'zod';
 import { createError } from './withErrorHandler';
 
 interface ValidationOptions {
-  body?: z.ZodSchema;
-  query?: z.ZodSchema;
-  params?: z.ZodSchema;
+  body?: ZodSchema;
+  query?: ZodSchema;
+  params?: ZodSchema;
 }
 
 export function withValidation(schema: ValidationOptions) {
-  return function (handler: any) {
+  return function (handler: (req: NextApiRequest, res: NextApiResponse) => Promise<void>) {
     return async function (req: NextApiRequest, res: NextApiResponse) {
       try {
         // Validate request body if schema provided
@@ -31,7 +31,7 @@ export function withValidation(schema: ValidationOptions) {
         // Continue to handler
         return handler(req, res);
       } catch (error) {
-        if (error instanceof z.ZodError) {
+        if (error instanceof ZodError) {
           return res.status(400).json({
             error: 'Validation Error',
             details: error.errors.map(err => ({
