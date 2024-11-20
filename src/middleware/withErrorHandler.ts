@@ -20,7 +20,7 @@ class ApiError extends Error {
   }
 }
 
-export function withErrorHandler(handler: any) {
+export function withErrorHandler(handler: (req: NextApiRequest, res: NextApiResponse) => Promise<void>) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       return await handler(req, res);
@@ -71,8 +71,8 @@ function handleError(error: unknown): ErrorResponse {
   };
 }
 
-function isSupabaseError(error: any): error is PostgrestError {
-  return error?.code !== undefined && typeof error?.message === 'string';
+function isSupabaseError(error: unknown): error is PostgrestError {
+  return (error as PostgrestError)?.code !== undefined && typeof (error as PostgrestError)?.message === 'string';
 }
 
 // Error utility functions
